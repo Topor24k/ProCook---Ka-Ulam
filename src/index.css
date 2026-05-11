@@ -1,0 +1,604 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&family=Istok+Web:wght@400;700&family=Outfit:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", sans-serif;
+  --font-expanded: "Archivo Black", sans-serif;
+  --font-istok: "Istok Web", sans-serif;
+
+  --color-pro-red: #F50100;
+  --color-pro-dark: #101828;
+  --color-pro-ivory: #FAF9F6;
+  --color-pro-white: #FEFEFD;
+  --color-pro-brown: #653838;
+  --color-pro-crimson: #B22222;
+
+  --spacing-section: 6rem;
+  --spacing-container: 100.6875rem; /* 1611px */
+  --spacing-hero: 85vh;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  --animation-marquee: marquee 40s linear infinite;
+}
+
+@utility pro-container {
+  @apply w-full max-w-container mx-auto px-6 lg:px-[124px];
+}
+
+@utility section-padding {
+  @apply py-24 md:py-32;
+}
+
+@utility flex-center {
+  @apply flex items-center justify-center;
+}
+
+@utility flex-between {
+  @apply flex items-center justify-between;
+}
+
+@utility text-hero {
+  @apply text-[clamp(44px,8vw,96px)] font-expanded leading-none tracking-tight;
+}
+
+@utility text-display-heading {
+  @apply text-[clamp(40px,7vw,128px)] font-expanded leading-[0.85] tracking-tighter uppercase;
+}
+
+@utility text-body {
+  @apply font-sans text-stone-500 leading-relaxed;
+}
+
+@utility btn-base {
+  @apply flex-center gap-3 rounded-full font-display font-bold transition-all disabled:opacity-50;
+}
+
+@utility btn-primary {
+  @apply btn-base px-10 h-[75px] text-[20px] bg-pro-red text-white hover:bg-black;
+}
+
+@utility btn-secondary {
+  @apply btn-base px-10 h-[75px] text-[20px] border border-black/10 hover:bg-black hover:text-white;
+}
+
+@utility btn-nav {
+  @apply px-6 py-2 text-[14px] btn-base;
+}
+
+@utility header-container {
+  @apply pro-container flex justify-between items-center;
+}
+
+@utility header-left {
+  @apply flex items-center gap-[58px];
+}
+
+@utility logo-text {
+  @apply text-[32px] md:text-[36px] font-expanded text-pro-red tracking-[-0.03em] transition-opacity duration-300 hover:opacity-80;
+}
+
+@utility nav-menu {
+  @apply hidden xl:flex items-center gap-[30px];
+}
+
+@utility nav-link {
+  @apply text-[13px] font-display font-bold text-[#6A7282] transition-colors duration-200 uppercase tracking-wider hover:text-pro-red;
+  &.active {
+    @apply text-pro-red;
+  }
+}
+
+@utility header-actions {
+  @apply flex items-center gap-4;
+}
+
+@utility login-link {
+  @apply text-[13px] font-display font-bold text-black transition-colors duration-200 uppercase tracking-wider hover:text-pro-red;
+}
+
+@utility signup-button {
+  @apply px-4 py-2 rounded-md text-[14px] font-display font-bold bg-black text-white transition-colors duration-200 hover:bg-pro-red;
+}
+
+@utility input-field {
+  @apply w-full bg-transparent outline-none font-sans transition-colors;
+}
+
+@utility card-styled {
+  @apply bg-pro-ivory rounded-[32px] overflow-hidden border border-black/5 hover:border-pro-red/20 transition-all;
+}
+
+/* New Semantic Aliases */
+@utility page-wrapper {
+  @apply min-h-screen flex flex-col bg-pro-white selection:bg-pro-red selection:text-white;
+}
+
+@utility main-content {
+  @apply flex-grow;
+}
+
+@utility header-bar {
+  @apply fixed top-0 left-0 right-0 h-[93px] bg-pro-ivory/95 backdrop-blur-md z-50 flex items-center border-b border-black/5;
+}
+
+@utility footer-bar {
+  @apply bg-pro-dark section-padding px-6 lg:px-[124px];
+}
+
+@utility auth-screen {
+  @apply fixed inset-0 z-[100] flex flex-col md:flex-row bg-white overflow-hidden;
+}
+
+@utility auth-brand-side {
+  @apply hidden md:flex md:w-1/2 relative flex-col justify-between p-16 text-white overflow-hidden;
+}
+
+@utility auth-form-side {
+  @apply w-full md:w-1/2 flex flex-center p-8 md:p-24 bg-white overflow-y-auto;
+}
+
+@utility form-container {
+  @apply w-full max-w-sm space-y-12;
+}
+
+@utility input-group {
+  @apply space-y-3;
+}
+
+@utility input-wrapper {
+  @apply flex items-center gap-4 border-b border-stone-100 py-3 focus-within:border-pro-red transition-colors;
+}
+
+@utility label-text {
+  @apply text-[10px] font-display font-black text-stone-400 uppercase tracking-[0.2em] block;
+}
+
+@utility section-wrapper {
+  @apply section-padding bg-white relative overflow-hidden;
+}
+
+@utility stat-card {
+  @apply space-y-3 p-6 bg-pro-ivory rounded-3xl border border-black/5;
+}
+
+@utility grid-responsive {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8;
+}
+
+@utility hero-section {
+  @apply relative min-h-hero flex-center bg-pro-white overflow-hidden;
+}
+
+@utility hero-content {
+  @apply relative z-10 pro-container py-20 flex flex-col gap-8;
+}
+
+@utility ai-search-section {
+  @apply section-padding bg-pro-ivory;
+}
+
+@utility ai-search-grid {
+  @apply pro-container grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center;
+}
+
+@utility explorer-section {
+  @apply section-padding bg-white;
+}
+
+@utility recipe-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16;
+}
+
+@utility how-works-section {
+  @apply section-padding bg-pro-ivory;
+}
+
+@utility how-works-grid {
+  @apply pro-container grid grid-cols-1 lg:grid-cols-2 gap-24;
+}
+
+@utility footer-content {
+  @apply pro-container border-t border-white/5 flex flex-col items-center text-center gap-16;
+}
+
+@utility footer-logo {
+  @apply text-[48px] font-expanded text-pro-red tracking-tighter;
+}
+
+@utility footer-brand-section {
+  @apply space-y-8;
+}
+
+@utility footer-info-section {
+  @apply flex flex-col gap-6 text-center;
+}
+
+@utility footer-nav {
+  @apply flex flex-wrap justify-center gap-x-12 gap-y-6;
+}
+
+@utility footer-copyright {
+  @apply text-white/20 font-sans text-xs tracking-widest uppercase;
+}
+
+@utility footer-socials {
+  @apply flex justify-center gap-10;
+}
+
+@utility social-link {
+  @apply text-[10px] font-display font-black text-white/40 uppercase tracking-widest hover:text-pro-red transition-colors;
+}
+
+@utility step-card {
+  @apply flex gap-6 p-6 bg-white rounded-3xl border border-black/5 hover:border-pro-red/20 transition-all shadow-sm;
+}
+
+@utility info-card {
+  @apply bg-pro-dark rounded-[50px] p-16 text-white border border-white/5 shadow-2xl relative overflow-hidden;
+}
+
+/* ===============================
+   HERO SECTION
+================================= */
+
+@utility hero-bg-wrap {
+  @apply absolute inset-0 z-0;
+}
+
+@utility hero-img {
+  @apply w-full h-full object-cover;
+}
+
+@utility hero-overlay {
+  @apply absolute inset-0 bg-black/50 bg-gradient-to-r from-black/80 via-black/40 to-transparent;
+}
+
+@utility hero-label {
+  @apply flex items-center gap-3;
+}
+
+@utility hero-label-line {
+  @apply w-8 h-[1px] bg-white;
+}
+
+@utility hero-label-text {
+  @apply text-[14px] font-display font-bold text-white tracking-[0.2em];
+}
+
+@utility hero-heading-wrap {
+  @apply space-y-2;
+}
+
+@utility hero-description {
+  @apply text-[clamp(18px,2vw,24px)] font-sans text-white/80 max-w-2xl leading-relaxed;
+}
+
+@utility hero-actions {
+  @apply flex flex-wrap gap-5 mt-6;
+}
+
+/* ===============================
+   SEARCH SECTION
+================================= */
+
+@utility search-label-wrap {
+  @apply flex items-center gap-3;
+}
+
+@utility search-label-line {
+  @apply w-8 h-[2px] bg-[#F54A00];
+}
+
+@utility search-label-text {
+  @apply text-[14px] font-display font-bold text-[#F54A00] tracking-[0.2em];
+}
+
+@utility search-heading-wrap {
+  @apply space-y-2;
+}
+
+@utility search-description {
+  @apply text-[22px] font-sans text-black/60 leading-relaxed max-w-xl;
+}
+
+@utility search-image-wrap {
+  @apply aspect-[5/6] w-full rounded-[40px] overflow-hidden shadow-2xl relative;
+}
+
+@utility search-image {
+  @apply w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700;
+}
+
+@utility search-image-overlay {
+  @apply absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black via-black/60 to-transparent;
+}
+
+/* ===============================
+   RECIPE EXPLORER
+================================= */
+
+@utility explorer-header {
+  @apply flex flex-col lg:flex-row justify-between items-end gap-8 mb-16;
+}
+
+@utility recipe-card {
+  @apply relative card-styled;
+}
+
+@utility recipe-img-wrap {
+  @apply aspect-square relative overflow-hidden;
+}
+
+@utility recipe-img {
+  @apply w-full h-full object-cover group-hover:scale-105 transition-transform duration-500;
+}
+
+@utility recipe-rating-badge {
+  @apply absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm;
+}
+
+@utility recipe-content-wrap {
+  @apply p-8 space-y-3;
+}
+
+/* ===============================
+   AUTH SYSTEM
+================================= */
+
+@utility auth-back-btn {
+  @apply flex items-center gap-2 text-[11px] font-display font-black tracking-[0.2em] hover:opacity-70 transition-opacity uppercase;
+}
+
+@utility auth-hero-title {
+  @apply text-[64px] font-expanded leading-[1.1] tracking-tight mb-8;
+}
+
+@utility auth-hero-desc {
+  @apply text-lg font-sans text-white/70 max-w-md leading-relaxed;
+}
+
+@utility auth-footer-wrap {
+  @apply relative z-10 space-y-1;
+}
+
+@utility auth-btn-primary {
+  @apply w-full h-14 bg-pro-crimson text-white flex items-center justify-center gap-3 text-sm font-display font-black uppercase tracking-[0.2em] hover:bg-black transition-all shadow-xl shadow-red-900/10;
+}
+
+/* ===============================
+   TRENDING MARQUEE
+================================= */
+
+@utility trending-strip {
+  @apply h-[100px] bg-pro-dark flex items-center overflow-hidden border-y border-white/5;
+}
+
+@utility custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #F5010020;
+    border-radius: 20px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #F5010040;
+  }
+}
+
+@utility trending-track {
+  @apply flex items-center gap-[40px] whitespace-nowrap;
+  animation: marquee 40s linear infinite;
+}
+
+@utility trending-group {
+  @apply flex items-center gap-[40px];
+}
+
+@utility trending-label {
+  @apply text-[16px] font-display font-black text-stone-600 tracking-widest;
+}
+
+@utility trending-value {
+  @apply text-[28px] font-expanded text-white opacity-90 uppercase;
+  &.accent {
+    @apply text-pro-red;
+  }
+}
+
+/* ===============================
+   HOW IT WORKS / PIPELINE
+================================= */
+
+@utility how-works-header {
+  @apply space-y-6;
+}
+
+@utility how-works-desc {
+  @apply text-lg text-body leading-relaxed max-w-xl;
+}
+
+@utility how-works-step-list {
+  @apply space-y-6 pr-4 max-h-[600px] overflow-y-auto custom-scrollbar;
+}
+
+@utility pipeline-card {
+  @apply info-card;
+}
+
+@utility pipeline-list {
+  @apply space-y-12 relative z-10;
+}
+
+@utility pipeline-connector {
+  @apply absolute left-[19px] top-[40px] bottom-[40px] w-px bg-white/10;
+}
+
+@utility pipeline-item {
+  @apply flex gap-8 items-start;
+}
+
+@utility pipeline-badge {
+  @apply w-10 h-10 rounded-full flex items-center justify-center text-[10px] font-black z-10 bg-white/10 text-white/40;
+  &.active {
+    @apply bg-pro-red text-white shadow-[0_0_20px_rgba(245,1,0,0.4)];
+  }
+}
+
+@utility pipeline-step-title {
+  @apply text-lg font-display font-bold text-white;
+}
+
+@utility pipeline-step-desc {
+  @apply text-sm text-white/40 font-sans leading-relaxed;
+}
+
+@utility pipeline-footer {
+  @apply mt-16 pt-10 border-t border-white/5 flex items-end justify-between;
+}
+
+@utility pipeline-status-wrap {
+  @apply flex gap-2 items-center;
+}
+
+@utility pipeline-status-dot {
+  @apply w-1.5 h-1.5 rounded-full;
+}
+
+/* ===============================
+   AUTH SYSTEM REFINED
+================================= */
+
+@utility auth-form-header {
+  @apply space-y-4;
+}
+
+@utility auth-welcome-title {
+  @apply text-[42px] font-display font-black text-black tracking-tight leading-none;
+}
+
+@utility auth-welcome-desc {
+  @apply font-sans text-stone-400 text-sm;
+}
+
+@utility auth-options-row {
+  @apply flex items-center justify-between;
+}
+
+@utility auth-checkbox-group {
+  @apply flex items-center gap-2 cursor-pointer;
+}
+
+@utility auth-checkbox-label {
+  @apply text-[13px] font-sans text-stone-500 group-hover:text-black transition-colors;
+}
+
+@utility auth-inline-btn {
+  @apply text-[13px] font-display font-bold text-pro-red hover:opacity-70 transition-opacity;
+}
+
+@utility auth-switch-footer {
+  @apply pt-10 text-center;
+}
+
+@utility auth-switch-prompt {
+  @apply text-sm font-sans text-stone-400;
+}
+
+@utility auth-link {
+  @apply font-bold text-pro-red hover:underline underline-offset-4 decoration-2;
+}
+
+/* ===============================
+   PROBLEM SECTION
+================================= */
+
+@utility problem-section {
+  @apply space-y-16 py-20;
+}
+
+@utility problem-header {
+  @apply max-w-3xl space-y-8;
+}
+
+@utility problem-label {
+  @apply text-sm font-display font-black text-pro-red uppercase tracking-[0.3em];
+}
+
+@utility problem-title {
+  @apply text-4xl md:text-5xl font-expanded text-black tracking-tight;
+}
+
+@utility problem-accent {
+  @apply w-16 h-1 bg-pro-red;
+}
+
+@utility problem-quote {
+  @apply text-xl md:text-2xl font-sans text-stone-600 leading-relaxed italic border-l-4 border-pro-red pl-8 py-2;
+}
+
+@utility problem-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6;
+}
+
+@utility problem-card {
+  @apply p-8 bg-pro-ivory rounded-[32px] border border-black/5 hover:border-pro-red/20 transition-all flex flex-col gap-6;
+}
+
+@utility problem-number {
+  @apply text-4xl font-expanded text-pro-red/10 transition-colors;
+}
+
+@utility problem-card-title {
+  @apply text-lg font-display font-black text-black leading-tight;
+}
+
+@utility problem-card-desc {
+  @apply text-sm text-stone-500 leading-relaxed;
+}
+
+@layer base {
+  body {
+    @apply bg-[#FAF9F6] text-black font-sans antialiased overflow-x-hidden;
+  }
+}
+
+@utility custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #e5e5e5;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #d4d4d4;
+  }
+}
+
+.mask-fade {
+  mask-image: linear-gradient(to right, black 85%, transparent 100%);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}

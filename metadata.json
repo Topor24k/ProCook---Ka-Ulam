@@ -1,0 +1,6 @@
+{
+  "name": "ProCook",
+  "description": "A community-driven Filipino recipe platform powered by a context-aware AI kitchen assistant that understands mood, budget, and ingredients.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
